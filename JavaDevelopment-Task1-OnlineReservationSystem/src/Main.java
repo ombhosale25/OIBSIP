@@ -1,10 +1,10 @@
-import gui.LoginFrame;
+import db.DBConnection;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        new LoginFrame();
+        DBConnection.getConnection();
 
     }
 
