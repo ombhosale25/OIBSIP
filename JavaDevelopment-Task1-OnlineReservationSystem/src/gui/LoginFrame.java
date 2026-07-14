@@ -1,7 +1,7 @@
 package gui;
 
-import javax.swing.*;
 import java.awt.event.*;
+import javax.swing.*;
 
 public class LoginFrame extends JFrame {
 
@@ -53,8 +53,11 @@ public class LoginFrame extends JFrame {
         if(user.equals("admin") && pass.equals("admin123")){
 
             JOptionPane.showMessageDialog(null,
-                    "Login Successful");
+        "Login Successful");
 
+        new Dashboard();
+
+dispose();
         }else{
 
             JOptionPane.showMessageDialog(null,
