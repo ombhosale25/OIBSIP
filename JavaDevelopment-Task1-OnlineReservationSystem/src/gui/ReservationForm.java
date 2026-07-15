@@ -10,6 +10,14 @@ import util.PNRGenerator;
 
 public class ReservationForm extends JFrame {
 
+    private JTextField passengerField;
+private JTextField trainNoField;
+private JTextField trainNameField;
+private JTextField dateField;
+private JTextField sourceField;
+private JTextField destinationField;
+private JComboBox<String> classBox;
+
     public ReservationForm() {
 
         setTitle("Reservation Form");
@@ -26,7 +34,7 @@ public class ReservationForm extends JFrame {
         passengerLabel.setBounds(40,70,120,25);
         add(passengerLabel);
 
-        JTextField passengerField = new JTextField();
+         passengerField = new JTextField();
         passengerField.setBounds(180,70,250,25);
         add(passengerField);
 
@@ -34,7 +42,7 @@ public class ReservationForm extends JFrame {
         trainNoLabel.setBounds(40,110,120,25);
         add(trainNoLabel);
 
-        JTextField trainNoField = new JTextField();
+         trainNoField = new JTextField();
         trainNoField.setBounds(180,110,250,25);
         add(trainNoField);
 
@@ -42,7 +50,7 @@ public class ReservationForm extends JFrame {
         trainNameLabel.setBounds(40,150,120,25);
         add(trainNameLabel);
 
-        JTextField trainNameField = new JTextField();
+         trainNameField = new JTextField();
         trainNameField.setBounds(180,150,250,25);
         trainNameField.setEditable(false);
         add(trainNameField);
@@ -83,8 +91,7 @@ public class ReservationForm extends JFrame {
                 "First Class"
         };
 
-        JComboBox<String> classBox =
-                new JComboBox<>(classes);
+       classBox = new JComboBox<>(classes);
         classBox.setBounds(180,190,250,25);
         add(classBox);
 
@@ -92,7 +99,7 @@ public class ReservationForm extends JFrame {
         dateLabel.setBounds(40,230,120,25);
         add(dateLabel);
 
-        JTextField dateField = new JTextField();
+         dateField = new JTextField();
         dateField.setBounds(180,230,250,25);
         add(dateField);
 
@@ -100,7 +107,7 @@ public class ReservationForm extends JFrame {
         sourceLabel.setBounds(40,270,120,25);
         add(sourceLabel);
 
-        JTextField sourceField = new JTextField();
+         sourceField = new JTextField();
         sourceField.setBounds(180,270,250,25);
         add(sourceField);
 
@@ -108,7 +115,7 @@ public class ReservationForm extends JFrame {
         destinationLabel.setBounds(40,310,120,25);
         add(destinationLabel);
 
-        JTextField destinationField = new JTextField();
+         destinationField = new JTextField();
         destinationField.setBounds(180,310,250,25);
         add(destinationField);
 
@@ -202,6 +209,7 @@ public class ReservationForm extends JFrame {
         + "\nJourney Date : " + reservation.getJourneyDate()
         + "\nFrom : " + reservation.getSource()
         + "\nTo : " + reservation.getDestination();
+        clearForm();
 
 JOptionPane.showMessageDialog(
         this,
@@ -228,6 +236,26 @@ JOptionPane.showMessageDialog(
 
 });
 
+
     }
+    private void clearForm(){
+
+    passengerField.setText("");
+
+    trainNoField.setText("");
+
+    trainNameField.setText("");
+
+    dateField.setText("");
+
+    sourceField.setText("");
+
+    destinationField.setText("");
+
+    classBox.setSelectedIndex(0);
+
+    passengerField.requestFocus();
+
+}
 
 }

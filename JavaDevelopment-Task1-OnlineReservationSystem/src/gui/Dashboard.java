@@ -32,6 +32,11 @@ public class Dashboard extends JFrame {
         JButton cancelButton = new JButton("Cancel Ticket");
         cancelButton.setBounds(150, 150, 180, 35);
         add(cancelButton);
+        cancelButton.addActionListener(e -> {
+
+    new CancellationForm();
+
+});
 
         JButton logoutButton = new JButton("Logout");
         logoutButton.setBounds(150, 210, 180, 35);
