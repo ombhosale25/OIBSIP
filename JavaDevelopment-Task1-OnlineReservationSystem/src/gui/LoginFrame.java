@@ -1,5 +1,6 @@
 package gui;
 
+import dao.UserDAO;
 import java.awt.event.*;
 import javax.swing.*;
 
@@ -46,24 +47,27 @@ public class LoginFrame extends JFrame {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        String user = username.getText();
+        String user = username.getText().trim();
 
-        String pass = String.valueOf(password.getPassword());
+String pass = String.valueOf(password.getPassword());
 
-        if(user.equals("admin") && pass.equals("admin123")){
+UserDAO userDAO = new UserDAO();
 
-            JOptionPane.showMessageDialog(null,
-        "Login Successful");
+if(userDAO.login(user, pass)){
 
-        new Dashboard();
+    JOptionPane.showMessageDialog(null,
+            "Login Successful");
 
-dispose();
-        }else{
+    new Dashboard();
 
-            JOptionPane.showMessageDialog(null,
-                    "Invalid Username or Password");
+    dispose();
 
-        }
+}else{
+
+    JOptionPane.showMessageDialog(null,
+            "Invalid Username or Password");
+
+}
 
     }
 
