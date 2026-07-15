@@ -48,14 +48,11 @@ public class LoginFrame extends JFrame {
     public void actionPerformed(ActionEvent e) {
 
         String user = username.getText().trim();
+    String pass = String.valueOf(password.getPassword());
+    UserDAO userDAO = new UserDAO();
+    if(userDAO.login(user, pass)){
 
-String pass = String.valueOf(password.getPassword());
-
-UserDAO userDAO = new UserDAO();
-
-if(userDAO.login(user, pass)){
-
-    JOptionPane.showMessageDialog(null,
+     JOptionPane.showMessageDialog(null,
             "Login Successful");
 
     new Dashboard();

@@ -24,6 +24,11 @@ public class Dashboard extends JFrame {
         reserveButton.setBounds(150, 90, 180, 35);
         add(reserveButton);
 
+        reserveButton.addActionListener(e -> {
+             new ReservationForm();
+             dispose();
+        });
+
         JButton cancelButton = new JButton("Cancel Ticket");
         cancelButton.setBounds(150, 150, 180, 35);
         add(cancelButton);
