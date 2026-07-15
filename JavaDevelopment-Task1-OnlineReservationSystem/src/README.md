@@ -31,6 +31,13 @@ The application allows users to log in, book train tickets, generate a unique PN
 - Git & GitHub
 
 ---
+## 📸 Screenshots
+- Login Screen
+- Dashboard
+- Reservation Form
+- Booking Success
+- Cancellation Form
+
 
 
 
