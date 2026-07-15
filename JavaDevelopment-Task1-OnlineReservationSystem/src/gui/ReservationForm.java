@@ -96,7 +96,7 @@ public class ReservationForm extends JFrame {
         dateField.setBounds(180,230,250,25);
         add(dateField);
 
-        JLabel sourceLabel = new JLabel("Source");
+        JLabel sourceLabel = new JLabel("From");
         sourceLabel.setBounds(40,270,120,25);
         add(sourceLabel);
 
@@ -104,7 +104,7 @@ public class ReservationForm extends JFrame {
         sourceField.setBounds(180,270,250,25);
         add(sourceField);
 
-        JLabel destinationLabel = new JLabel("Destination");
+        JLabel destinationLabel = new JLabel("To");
         destinationLabel.setBounds(40,310,120,25);
         add(destinationLabel);
 
@@ -116,8 +116,65 @@ public class ReservationForm extends JFrame {
         bookButton.setBounds(180,370,150,35);
         add(bookButton);
         setVisible(true);
+        //Booking
         bookButton.addActionListener(e -> {
+              if(passengerField.getText().trim().isEmpty()){
+        JOptionPane.showMessageDialog(
+                this,
+                "Passenger Name is required.");
+        passengerField.requestFocus();
+        return;
+    }
+    // Train Number
+    if(trainNoField.getText().trim().isEmpty()){
+        JOptionPane.showMessageDialog(
+                this,
+                "Train Number is required.");
+        trainNoField.requestFocus();
+        return;
+    }
+    // Train Name
+    if(trainNameField.getText().trim().isEmpty()){
+        JOptionPane.showMessageDialog(
+                this,
+                "Please enter a valid Train Number.");
+        trainNoField.requestFocus();
+        return;
+    }
+    // Journey Date
+    if(dateField.getText().trim().isEmpty()){
+        JOptionPane.showMessageDialog(
+                this,
+                "Journey Date is required.");
+        dateField.requestFocus();
+        return;
+    }
+    // Source
+    if(sourceField.getText().trim().isEmpty()){
+        JOptionPane.showMessageDialog(
+                this,
+                "Source Station is required.");
+        sourceField.requestFocus();
+        return;
+   }
 
+    // Destination
+    if(destinationField.getText().trim().isEmpty()){
+        JOptionPane.showMessageDialog(
+                this,
+                "Destination Station is required.");
+        destinationField.requestFocus();
+        return;
+    }
+    // Source != Destination
+    if(sourceField.getText().trim()
+            .equalsIgnoreCase(destinationField.getText().trim())){
+        JOptionPane.showMessageDialog(
+                this,
+                "Source and Destination cannot be the same.");
+        destinationField.requestFocus();
+        return;
+    }
     try {
 
         Reservation reservation = new Reservation();
@@ -135,10 +192,22 @@ public class ReservationForm extends JFrame {
 
         if (dao.bookTicket(reservation)) {
 
-            JOptionPane.showMessageDialog(
-                    this,
-                    "Booking Successful!\n\nPNR : " + reservation.getPnr());
+            String message =
+        "Booking Successful!\n\n"
+        + "PNR : " + reservation.getPnr()
+        + "\nPassenger : " + reservation.getPassengerName()
+        + "\nTrain No : " + reservation.getTrainNo()
+        + "\nTrain Name : " + reservation.getTrainName()
+        + "\nClass : " + reservation.getClassType()
+        + "\nJourney Date : " + reservation.getJourneyDate()
+        + "\nFrom : " + reservation.getSource()
+        + "\nTo : " + reservation.getDestination();
 
+JOptionPane.showMessageDialog(
+        this,
+        message,
+        "Reservation Successful",
+        JOptionPane.INFORMATION_MESSAGE);
         } else {
 
             JOptionPane.showMessageDialog(
