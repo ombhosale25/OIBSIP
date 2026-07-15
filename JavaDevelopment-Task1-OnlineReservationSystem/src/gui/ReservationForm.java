@@ -4,6 +4,9 @@ import dao.TrainDAO;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import javax.swing.*;
+import dao.ReservationDAO;
+import model.Reservation;
+import util.PNRGenerator;
 
 public class ReservationForm extends JFrame {
 
@@ -113,6 +116,48 @@ public class ReservationForm extends JFrame {
         bookButton.setBounds(180,370,150,35);
         add(bookButton);
         setVisible(true);
+        bookButton.addActionListener(e -> {
+
+    try {
+
+        Reservation reservation = new Reservation();
+
+        reservation.setPnr(PNRGenerator.generatePNR());
+        reservation.setPassengerName(passengerField.getText().trim());
+        reservation.setTrainNo(Integer.parseInt(trainNoField.getText()));
+        reservation.setTrainName(trainNameField.getText());
+        reservation.setClassType(classBox.getSelectedItem().toString());
+        reservation.setJourneyDate(dateField.getText().trim());
+        reservation.setSource(sourceField.getText().trim());
+        reservation.setDestination(destinationField.getText().trim());
+
+        ReservationDAO dao = new ReservationDAO();
+
+        if (dao.bookTicket(reservation)) {
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Booking Successful!\n\nPNR : " + reservation.getPnr());
+
+        } else {
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Booking Failed!");
+
+        }
+
+    } catch (Exception ex) {
+
+        ex.printStackTrace();
+
+        JOptionPane.showMessageDialog(
+                this,
+                "Please enter valid details.");
+
+    }
+
+});
 
     }
 
